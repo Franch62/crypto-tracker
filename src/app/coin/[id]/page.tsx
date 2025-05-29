@@ -1,5 +1,16 @@
-import { fetchCoinMarketChart } from "../../../../lib/coingecko";
-import CoinChart from "../../../../components/CoinChart";
+import { fetchCoinMarketChart } from "@/lib/coingecko";
+import CoinChart from "@/components/CoinChart";
+import { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
+  return {
+    title: `${params.id.toUpperCase()} | Crypto Tracker`,
+  };
+}
 
 export default async function CoinPage({ params }: { params: { id: string } }) {
   const chartData = await fetchCoinMarketChart(params.id);

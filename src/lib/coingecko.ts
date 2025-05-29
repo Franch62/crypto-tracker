@@ -11,6 +11,7 @@ export async function fetchTopCoins() {
             page: 1,
             sparkLine: false,
         },
+        timeout: 5000
     });
 
     try {
@@ -21,7 +22,9 @@ export async function fetchTopCoins() {
 }
 
 export async function fetchCoinDetails(id: string) {
-    const res = await axios.get(`${BASE_URL}/coins/${id}`)
+    const res = await axios.get(`${BASE_URL}/coins/${id}`,{
+        timeout: 5000
+    })
 
     return res.data;
 }
@@ -31,7 +34,8 @@ export async function fetchCoinMarketChart(id: string, days = 7) {
         params: {
             vs_currency: 'usd',
             days: days,
-        }
+        },
+        timeout: 5000
     })
 
     return res.data;
